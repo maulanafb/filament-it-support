@@ -16,6 +16,29 @@
 
 <body class="antialiased">
     @livewire('sample')
+
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit
+    </p>
+    <div class="container mx-auto">
+        <div class="cold-md-6">
+            <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur, odit.
+            </p>
+        </div>
+    </div>
+
+    <table>
+
+        <thead>
+            <th>
+
+            </th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
 </body>
 
 </html>

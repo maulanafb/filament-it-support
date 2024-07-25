@@ -2,19 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\RoleResource\RelationManagers\PermissionsRelationManager;
-use Filament\Forms;
+
 use App\Models\Role;
-use Filament\Forms\Components\TextInput;
 use Filament\Tables;
 use Filament\Forms\Form;
-use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Illuminate\Database\Eloquent\Builder;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Forms\Components\TextInput;
+
 use App\Filament\Resources\RoleResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\RoleResource\RelationManagers;
+use App\Filament\Resources\RoleResource\RelationManagers\PermissionsRelationManager;
 
 class RoleResource extends Resource
 {
