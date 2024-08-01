@@ -57,7 +57,7 @@ class User extends Authenticatable
                 $permissionsArray[] = $singlePermission->name;
             }
         }
-
+        // dd(collect($permissionsArray));
         return collect($permissionsArray)->unique()->contains($permission);
     }
 

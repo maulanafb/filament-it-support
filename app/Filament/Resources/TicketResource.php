@@ -39,11 +39,13 @@ class TicketResource extends Resource
                     ->rows(3),
                 Select::make('status')
                     ->options(self::$model::STATUS)
+                    ->disabled(true)
                     ->required()
                     ->in(self::$model::STATUS),
                 Select::make('priority')
                     ->options(self::$model::PRIORITY)
                     ->required()
+
                     ->in(self::$model::PRIORITY),
                 Select::make('assigned_to')
                     ->options(
@@ -53,7 +55,8 @@ class TicketResource extends Resource
                     )
                     ->required(),
                 Textarea::make('comment')
-                    ->rows(3),
+                    ->rows(3)
+                    ->disabled(!auth()->user()->hasPermission('ticket_edit')),
                 FileUpload::make('attachment')
             ]);
     }
@@ -61,14 +64,15 @@ class TicketResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
-            ->modifyQueryUsing(fn(Builder $query) =>
+            ->modifyQueryUsing(
+                fn (Builder $query) =>
                 auth()->user()->hasRole(Role::ROLES['Admin']) ?
-                $query : $query->where('assigned_to', auth()->id())
+                    $query : $query->where('assigned_to', auth()->id())
             )
             ->defaultSort('created_at', 'desc')
             ->columns([
                 TextColumn::make('title')
-                    ->description(fn(Ticket $record): ?string => $record?->description ?? null)
+                    ->description(fn (Ticket $record): ?string => $record?->description ?? null)
                     ->searchable()
                     ->sortable(),
                 SelectColumn::make('status')

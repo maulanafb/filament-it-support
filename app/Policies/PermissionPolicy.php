@@ -13,6 +13,7 @@ class PermissionPolicy
      */
     public function viewAny(User $user): bool
     {
+        // return false;
         return $user->hasPermission('permission_access');
     }
 
@@ -29,6 +30,7 @@ class PermissionPolicy
      */
     public function create(User $user): bool
     {
+        // return $user->hasPermission('permission_create');
         return $user->hasPermission('permission_create');
     }
 

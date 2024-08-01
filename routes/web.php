@@ -1,9 +1,11 @@
 <?php
 
 use App\Livewire;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
+    User::find()->hasPermission('category_create');
     return view('welcome');
 });
 
