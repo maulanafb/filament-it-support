@@ -8,14 +8,13 @@ use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\ItemResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\ItemResource\RelationManagers;
 use Filament\Forms\Components\Toggle;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\ToggleColumn;
+
+use App\Filament\Resources\ItemResource\Pages;
+
 
 class ItemResource extends Resource
 {
@@ -51,13 +50,14 @@ class ItemResource extends Resource
                     ->sortable(),
 
                 TextColumn::make('description')
+                 ->wrap()
                     ->searchable()
                     ->sortable(),
                 ImageColumn::make('image'),
                 // ->thumbnail(),
                 ToggleColumn::make('status')
                     ->label('Is Active')
-                    ->disabled(!auth()->user()->hasPermission('item_edit'))
+                    // ->disabled(!auth()->user()->hasPermission('item_edit'))
                     ->sortable(),
 
             ])

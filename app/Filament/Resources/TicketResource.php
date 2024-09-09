@@ -39,7 +39,7 @@ class TicketResource extends Resource
                     ->rows(3),
                 Select::make('status')
                     ->options(self::$model::STATUS)
-                    ->disabled(true)
+                    // ->disabled(true)
                     ->required()
                     ->in(self::$model::STATUS),
                 Select::make('priority')
@@ -65,14 +65,14 @@ class TicketResource extends Resource
     {
         return $table
             ->modifyQueryUsing(
-                fn (Builder $query) =>
+                fn(Builder $query) =>
                 auth()->user()->hasRole(Role::ROLES['Admin']) ?
                     $query : $query->where('assigned_to', auth()->id())
             )
             ->defaultSort('created_at', 'desc')
             ->columns([
                 TextColumn::make('title')
-                    ->description(fn (Ticket $record): ?string => $record?->description ?? null)
+                    ->description(fn(Ticket $record): ?string => $record?->description ?? null)
                     ->searchable()
                     ->sortable(),
                 SelectColumn::make('status')

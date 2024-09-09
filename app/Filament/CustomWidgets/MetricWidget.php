@@ -5,8 +5,6 @@ namespace App\Filament\CustomWidgets;
 use Closure;
 use Illuminate\Support\Str;
 use Filament\Widgets\Widget;
-use Illuminate\View\Component;
-use Illuminate\Contracts\View\View;
 use Filament\Support\Enums\IconPosition;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\View\ComponentAttributeBag;
